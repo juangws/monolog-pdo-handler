@@ -176,6 +176,9 @@ class KWPDOHandler extends AbstractProcessingHandler
             $ipAddress = '127.0.0.1';
         }
 
+        /** Fix Chrome 將 `localhost` 視為 `::1` 非預期 `127.0.0.1`  */
+        $ipAddress = ($ipAddress == '::1') ? '127.0.0.1' : $ipAddress;
+        
         return explode(',', $ipAddress)[0];
     }
 
